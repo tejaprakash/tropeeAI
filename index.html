@@ -368,6 +368,31 @@
       margin-bottom: 0;
     }
 
+    .contact-box {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      color: var(--muted);
+    }
+
+    .contact-mail {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #edf4ff;
+      border: 1px solid #cfdcf1;
+      color: var(--brand-deep);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .contact-mail:hover {
+      background: #dfeeff;
+    }
+
     .highlight {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -551,6 +576,7 @@
         <a href="#solutions">Solutions</a>
         <a href="#features">Why TropeeAI</a>
         <a href="#workflow">How It Works</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
 
@@ -672,6 +698,21 @@
             <li><strong>Configure guardrails:</strong> define access, approvals, and notification rules.</li>
             <li><strong>Launch and measure:</strong> monitor usage, outcomes, and ROI in a unified dashboard.</li>
           </ol>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-head">
+          <div>
+            <span class="pill">Contact Us</span>
+            <h2>Talk to the TropeeAI team</h2>
+          </div>
+          <p>For demos, partnerships, and setup support, email us directly.</p>
+        </div>
+        <div class="contact-box">
+          <strong>Email Support</strong>
+          <p style="margin: 8px 0 14px;">Click below to open your mail app and contact us.</p>
+          <a class="contact-mail" href="mailto:tejaprakashp@gmail.com" aria-label="Email TropeeAI support">Email Us</a>
         </div>
       </section>
 
