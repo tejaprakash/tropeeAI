@@ -2,47 +2,686 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tropee - AI Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="TropeeAI is a central hub of practical AI products for daily life, finance, education, and developers."
+  />
+  <title>TropeeAI | AI Product Solutions Hub</title>
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-      color: white;
-      text-align: center;
+    @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+
+    :root {
+      --bg: #f4f8fb;
+      --surface: #ffffff;
+      --ink: #142033;
+      --muted: #5f6d82;
+      --line: #dde5ef;
+      --brand: #1263ff;
+      --brand-deep: #0a49bd;
+      --accent: #f97316;
+      --accent-soft: #ffd9bf;
+      --success: #07865f;
+      --radius: 18px;
+      --shadow: 0 16px 40px rgba(15, 35, 70, 0.12);
     }
 
-    .container {
-      padding: 100px 20px;
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 20%, rgba(18, 99, 255, 0.11), transparent 40%),
+        radial-gradient(circle at 85% 10%, rgba(249, 115, 22, 0.12), transparent 35%),
+        linear-gradient(180deg, #f9fcff 0%, #eef5fb 100%);
+      line-height: 1.6;
+    }
+
+    .page-shell {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px 48px;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      margin-top: 14px;
+      position: sticky;
+      top: 10px;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.93), rgba(246, 251, 255, 0.88)),
+        linear-gradient(120deg, rgba(17, 185, 212, 0.08), rgba(148, 56, 233, 0.08));
+      border: 1px solid rgba(188, 205, 229, 0.85);
+      border-radius: 20px;
+      box-shadow: 0 16px 30px rgba(20, 32, 51, 0.1);
+    }
+
+    .brand {
+      text-decoration: none;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 auto;
+      border-radius: 14px;
+      box-shadow: 0 10px 20px rgba(38, 57, 86, 0.18);
+      overflow: hidden;
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      min-width: 0;
+    }
+
+    .brand-name {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.01em;
+      font-weight: 700;
+      background: linear-gradient(96deg, #12bbd5 0%, #1d6bc5 38%, #8f2dd4 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .brand-tagline {
+      margin: 2px 0 0;
+      font-size: 0.76rem;
+      color: #65748a;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(207, 218, 234, 0.9);
+      border-radius: 999px;
+      padding: 5px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4f6078;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 999px;
+      transition: color 0.25s, background 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: #124ba6;
+      background: #edf4ff;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 30px;
+      padding: 36px 0 12px;
+      align-items: stretch;
+    }
+
+    .hero-panel {
+      background: linear-gradient(160deg, rgba(18, 99, 255, 0.98), rgba(11, 66, 182, 0.95));
+      color: #fff;
+      border-radius: 26px;
+      padding: 44px;
+      box-shadow: var(--shadow);
+      animation: rise 0.8s ease;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.18);
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.2;
+      margin: 0;
     }
 
     h1 {
-      font-size: 50px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 16px;
     }
 
-    p {
-      font-size: 20px;
-      margin: 20px 0;
+    .hero-copy {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .btn {
-      background: white;
-      color: #333;
-      padding: 12px 25px;
-      border-radius: 25px;
       text-decoration: none;
-      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 600;
+      transition: transform 0.25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #113f9d;
+    }
+
+    .btn-secondary {
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+    }
+
+    .stats-panel {
+      border-radius: 26px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      animation: rise 1s ease;
+    }
+
+    .stats-title {
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .stat {
+      background: #f7faff;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 14px;
+    }
+
+    .stat b {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 4px;
+    }
+
+    section {
+      padding: 44px 0 12px;
+      animation: rise 0.9s ease;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 62ch;
+      margin: 0;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: #fff;
+    }
+
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(20, 32, 51, 0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(20, 32, 51, 0.12);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .feature {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      color: var(--muted);
+    }
+
+    .feature b {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .timeline {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .timeline ol {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .timeline li {
+      margin-bottom: 10px;
+    }
+
+    .timeline li:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .highlight-card {
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .highlight-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.1rem;
+    }
+
+    .highlight-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .highlight-card.warm {
+      background:
+        radial-gradient(circle at top left, var(--accent-soft), transparent 65%),
+        #fff8f3;
+    }
+
+    .highlight-card.cool {
+      background:
+        radial-gradient(circle at top right, rgba(18, 99, 255, 0.15), transparent 68%),
+        #f4f9ff;
+    }
+
+    .cta {
+      margin-top: 36px;
+      padding: 30px;
+      border-radius: 24px;
+      background: #132844;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cta h3 {
+      margin-bottom: 8px;
+      font-size: 1.5rem;
+    }
+
+    .cta p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .cta .btn {
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 20px;
+    }
+
+    footer {
+      margin-top: 42px;
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-list {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .highlight {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .top-nav {
+        flex-wrap: wrap;
+        position: static;
+        padding: 12px;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        border-radius: 16px;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand-name {
+        font-size: 1.15rem;
+      }
+
+      .brand-tagline {
+        font-size: 0.69rem;
+      }
+
+      .solutions-grid,
+      .feature-list,
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel,
+      .stats-panel {
+        padding: 24px;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Tropee</h1>
-    <p>All AI. One Platform.</p>
-    <a class="btn" href="#">Get Started</a>
+  <div class="page-shell">
+    <header class="top-nav">
+      <a class="brand" href="#top" aria-label="TropeeAI Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="48" height="48" role="img" aria-label="Tropee logo mark">
+            <defs>
+              <linearGradient id="logoFill" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0%" stop-color="#12bbd5" />
+                <stop offset="55%" stop-color="#2872c8" />
+                <stop offset="100%" stop-color="#a425d9" />
+              </linearGradient>
+            </defs>
+            <path d="M32 3.5 54 16.2v31.6L32 60.5 10 47.8V16.2Z" fill="url(#logoFill)"></path>
+            <g fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 34h9l6-6v18"></path>
+              <path d="M27 22h9l5 5"></path>
+              <path d="M41 37h7"></path>
+              <circle cx="19" cy="34" r="2.8"></circle>
+              <circle cx="27" cy="22" r="2.8"></circle>
+              <circle cx="41" cy="37" r="2.8"></circle>
+              <circle cx="41" cy="27" r="2.8"></circle>
+            </g>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <strong class="brand-name">Tropee</strong>
+          <small class="brand-tagline">One Stop for AI Solutions</small>
+        </span>
+      </a>
+      <nav class="nav-links">
+        <a href="#solutions">Solutions</a>
+        <a href="#features">Why TropeeAI</a>
+        <a href="#workflow">How It Works</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-panel">
+          <span class="tag">One Place for Practical AI Products</span>
+          <h1>Build your daily work around intelligent AI solutions.</h1>
+          <p class="hero-copy">
+            TropeeAI combines production-ready AI products into one platform so teams and individuals can automate routines, manage money, accelerate learning, and ship software faster.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#solutions">Explore Solutions</a>
+            <a class="btn btn-secondary" href="#workflow">See Platform Workflow</a>
+          </div>
+        </div>
+        <aside class="stats-panel">
+          <span class="stats-title">Platform Snapshot</span>
+          <div class="stat-grid">
+            <div class="stat">
+              <b>24/7</b>
+              Agent support across use cases
+            </div>
+            <div class="stat">
+              <b>4</b>
+              Product families in one dashboard
+            </div>
+            <div class="stat">
+              <b>120+</b>
+              Reusable automations and prompts
+            </div>
+            <div class="stat">
+              <b>Secure</b>
+              Role access and activity tracking
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="solutions">
+        <div class="section-head">
+          <div>
+            <span class="pill">Product Categories</span>
+            <h2>AI solutions for real daily outcomes</h2>
+          </div>
+          <p>Choose focused products for life and work, then connect them under one account to share data, automations, and reporting.</p>
+        </div>
+        <div class="solutions-grid">
+          <article class="card">
+            <span class="label">Everyday Agents</span>
+            <h3>Day-to-Day Work Assistant</h3>
+            <p>Manage tasks, emails, meeting notes, reminders, and routine planning with natural language commands.</p>
+          </article>
+          <article class="card">
+            <span class="label">Finance AI</span>
+            <h3>Smart Finance Copilot</h3>
+            <p>Track spending, monitor budgets, summarize transactions, and receive personalized savings insights.</p>
+          </article>
+          <article class="card">
+            <span class="label">Education AI</span>
+            <h3>Adaptive Learning Studio</h3>
+            <p>Create lesson plans, quizzes, revision flows, and student feedback loops with explainable AI support.</p>
+          </article>
+          <article class="card">
+            <span class="label">Developer AI</span>
+            <h3>Engineering Productivity Suite</h3>
+            <p>Generate scaffolds, review pull requests, draft documentation, and accelerate debugging workflows.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="features">
+        <div class="section-head">
+          <div>
+            <span class="pill">Why TropeeAI</span>
+            <h2>Everything needed to run an AI product hub</h2>
+          </div>
+          <p>This homepage includes the foundation details users expect before trying or buying a platform.</p>
+        </div>
+        <div class="feature-list">
+          <div class="feature">
+            <b>Unified Dashboard</b>
+            One login, one view for all your AI products and usage metrics.
+          </div>
+          <div class="feature">
+            <b>Templates Library</b>
+            Starter automations for personal tasks, finance workflows, classes, and code projects.
+          </div>
+          <div class="feature">
+            <b>Integrations</b>
+            Connect calendars, docs, email, sheets, and development tools.
+          </div>
+          <div class="feature">
+            <b>Security Controls</b>
+            Team roles, audit logs, and secure data boundaries for safe collaboration.
+          </div>
+          <div class="feature">
+            <b>Human-in-Loop</b>
+            Keep approvals in critical steps while AI handles repetitive execution.
+          </div>
+          <div class="feature">
+            <b>Scalable Architecture</b>
+            Start with one agent and scale to multiple products without rebuilding.
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow">
+        <div class="section-head">
+          <div>
+            <span class="pill">How It Works</span>
+            <h2>Simple path from setup to impact</h2>
+          </div>
+        </div>
+        <div class="timeline">
+          <ol>
+            <li><strong>Pick your product lane:</strong> daily productivity, finance intelligence, education tools, or developer acceleration.</li>
+            <li><strong>Activate ready-made modules:</strong> choose templates, prompts, and integrations to match your workflow.</li>
+            <li><strong>Configure guardrails:</strong> define access, approvals, and notification rules.</li>
+            <li><strong>Launch and measure:</strong> monitor usage, outcomes, and ROI in a unified dashboard.</li>
+          </ol>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <span>TropeeAI</span>
+      <span>All AI. One Platform.</span>
+      <span>Copyright 2026</span>
+    </footer>
   </div>
 </body>
 </html>
